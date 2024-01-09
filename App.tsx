@@ -3,7 +3,7 @@ import { ThemeProvider } from 'styled-components/native';
 import theme from './src/theme';
 import { Loading } from '@components/Loading';
 import { useFonts, NunitoSans_400Regular, NunitoSans_700Bold } from '@expo-google-fonts/nunito-sans';
-import { Home } from '@screens/Home';
+import { Routes } from './src/routes';
 
 export default function App() {
   const [fontLoaded] = useFonts({
@@ -17,7 +17,7 @@ export default function App() {
       
       {
         fontLoaded
-        ? <Home />
+        ? <Routes />
         : <Loading showLogo />
       }
 
