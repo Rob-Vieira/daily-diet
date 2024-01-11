@@ -1,12 +1,29 @@
+import { useNavigation } from "@react-navigation/native";
 import {  Container, Subtitle, Title, ButtonIcon, Icon } from "./styles";
 
-export function Percent(){
+
+export type PercentProps = {
+    percentage: number;
+    subtitle: string;
+}
+
+export function Percent({ percentage, subtitle }: PercentProps){
+    const navigation = useNavigation();
+
+    function handleOpenStatistics(){
+        navigation.navigate('statistics')
+    }
+
+    const isInDiet = percentage > 60;
+
     return (
-        <Container>
-            <Title>90,86%</Title>
-            <Subtitle>das refeições dentro da dieta</Subtitle>
-            <ButtonIcon>
-                <Icon name="ArrowUpRight" />
+        <Container isInDiet={ isInDiet } >
+            <Title>
+                { `${percentage.toLocaleString('pt-BR', { maximumFractionDigits: 2 })}%` }
+            </Title>
+            <Subtitle>{ subtitle }</Subtitle>
+            <ButtonIcon onPress={ handleOpenStatistics }>
+                <Icon isInDiet={ isInDiet } name="ArrowUpRight" />
             </ButtonIcon>
         </Container>
     );

@@ -1,9 +1,13 @@
 import { SafeAreaView } from "react-native-safe-area-context";
 import styled, { css } from "styled-components/native";
 
-const Container = styled(SafeAreaView)`
+type Props = {
+    isInDiet: boolean;
+}
+
+const Container = styled(SafeAreaView)<Props>`
     flex: 1;
-    background-color: ${({ theme }) => theme.colors.green_light};
+    background-color: ${({ theme, isInDiet }) => isInDiet ? theme.colors.green_light : theme.colors.red_light};
 `;
 
 const Content = styled.View`

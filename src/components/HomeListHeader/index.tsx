@@ -1,7 +1,11 @@
 import { Button } from "@components/Button";
 import { Container, TextM } from "./styles";
 
-export function HomeListHeader(){
+type Props = {
+    onNewMeal: () => void
+}
+
+export function HomeListHeader({ onNewMeal }: Props){
     return (
         <Container>
             <TextM>
@@ -9,6 +13,7 @@ export function HomeListHeader(){
             </TextM>
     
             <Button 
+                onPress={ onNewMeal }
                 title="Nova refeição"
                 iconName="Plus"
                 showIcon

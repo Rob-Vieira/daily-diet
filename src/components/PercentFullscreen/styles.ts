@@ -1,4 +1,5 @@
 import { Icon } from "@components/Icon";
+import { PercentStylesProps } from "@components/Percent/styles";
 import { TouchableOpacity } from "react-native";
 import styled, { css } from "styled-components/native";
 
@@ -15,8 +16,8 @@ const BackButton = styled(TouchableOpacity)`
     left: 24px;
 `;
 
-const BackIcon = styled(Icon).attrs(({ theme }) => ({
-    color: theme.colors.green_dark,
+const BackIcon = styled(Icon).attrs<PercentStylesProps>(({ theme, isInDiet }) => ({
+    color: isInDiet ? theme.colors.green_dark : theme.colors.red_dark,
     size: 24
 }))``;
 

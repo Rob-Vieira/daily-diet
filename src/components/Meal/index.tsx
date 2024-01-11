@@ -1,12 +1,12 @@
 import { Container, Diet, Hour, Title } from "./styles";
 
-type Props = {
+export type MealProps = {
     title: string;
     hour: string;
     inDiet: boolean;
 }
 
-export function Meal({ title, hour, inDiet }: Props){
+export function Meal({ title, hour, inDiet }: MealProps){
     return (
         <Container>
             <Hour>{hour}</Hour>

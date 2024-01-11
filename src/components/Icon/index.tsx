@@ -1,15 +1,15 @@
 import { ArrowLeft, ArrowUpRight, Plus, PencilSimpleLine, Trash } from "phosphor-react-native";
 
-export type IconProps = 'ArrowLeft' | 'ArrowUpRight' | 'Plus' | 'PencilSimpleLine' | 'Trash'
+export type IconTypeProps = 'ArrowLeft' | 'ArrowUpRight' | 'Plus' | 'PencilSimpleLine' | 'Trash'
 
-type Props = {
-    name: IconProps;
+export type IconProps = {
+    name: IconTypeProps;
     color?: string;
     size?: number;
 }
 
-export function Icon({ name, size = 16, color = '#000000' }: Props){
-    function getIcon(name: IconProps){
+export function Icon({ name, size = 16, color = '#000000' }: IconProps){
+    function getIcon(name: IconTypeProps){
         switch (name) {
             case 'ArrowLeft':
                 return ArrowLeft;

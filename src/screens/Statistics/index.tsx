@@ -4,8 +4,11 @@ import { StatisticalData } from "@components/StatisticalData";
 
 export function Statistics(){
     return (
-        <Container>
-            <PercentFullscreen />
+        <Container isInDiet={false}>
+            <PercentFullscreen
+                percentage={50.00}
+                subtitle="das refeições dentro da dieta"
+            />
 
             <Content>
                 <Title>

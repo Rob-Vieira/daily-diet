@@ -3,14 +3,18 @@ import { Icon as Icons } from "@components/Icon";
 import { TouchableOpacity } from "react-native";
 import styled, { css } from "styled-components/native";
 
-const Container = styled.View`
+export type PercentStylesProps = {
+    isInDiet: boolean;
+}
+
+const Container = styled.View<PercentStylesProps>`
     width: 100%;
     position: relative;
     justify-content: center;
     align-items: center;
     padding: 20px 16px;
     border-radius: 8px;
-    background-color: ${({ theme }) => theme.colors.green_light};
+    background-color: ${({ theme, isInDiet }) => isInDiet ? theme.colors.green_light : theme.colors.red_light };
     margin-bottom: 40px;
 `;
 
@@ -39,8 +43,8 @@ const ButtonIcon = styled(TouchableOpacity)`
     right: 8px;
 `;
 
-const Icon = styled(Icons).attrs(({theme}) => ({
-    color: theme.colors.green_dark,
+const Icon = styled(Icons).attrs<PercentStylesProps>(({theme, isInDiet}) => ({
+    color: isInDiet ? theme.colors.green_dark : theme.colors.red_dark,
     size: 24
 }))``;
 
