@@ -1,39 +1,77 @@
+import { Label } from "@components/Label";
 import { Container, Value } from "./styles";
 import DateTimePicker, { DateTimePickerEvent } from '@react-native-community/datetimepicker';
 import { useState } from "react";
 import { Platform} from "react-native";
 
-export function InputDateTime(){
-    const [date, setDate] = useState(new Date);
+type DataPickerMode = "time" | 'date' | 'countdown' | 'datetime';
+
+type Props = {
+    title: string;
+    mode: DataPickerMode;
+    value: Date;
+    onChange?: (event: DateTimePickerEvent, date: Date) => void
+}
+
+export function InputDateTime({ title, value, mode, onChange }: Props){
     const [showPicker, setShowPicker] = useState(false);
 
+    function handleChange(event: DateTimePickerEvent, date?: Date){
+        setShowPicker(false);
+        onChange && onChange(event, date ?? value);
+    }
 
-    const onChange = (event: DateTimePickerEvent, selectedDate?: Date | undefined) => {
-        const currentDate = selectedDate || date;
-        setShowPicker(Platform.OS === 'ios');
-        setDate(currentDate);
-      };
-    
-      const showDatepicker = () => {
+    function showDatepicker(){
         setShowPicker(true);
-      };
+    };
+
+    function getResult(){
+        switch(mode){
+            case 'date':
+                return value 
+                        ? value.toLocaleDateString('pt-BR', {
+                            day: "2-digit", 
+                            month: "2-digit",
+                            year: "numeric"
+                        }) 
+                        : new Date().toLocaleDateString('pt-BR', {
+                            day: "2-digit", 
+                            month: "2-digit",
+                            year: "numeric"
+                        });
+            case 'time':
+                return value 
+                        ? value.toLocaleTimeString('pt-BR', {
+                            hour: '2-digit', 
+                            minute: '2-digit'
+                        }) 
+                        : new Date().toLocaleTimeString('pt-BR', {
+                            hour: '2-digit', 
+                            minute: '2-digit'
+                        });
+            default:
+                return value?.toLocaleString('pt-BR')
+        }
+    }
 
     return (
         <Container onPress={showDatepicker}>
             <>
+                <Label 
+                    title={title}
+                />
                 <Value>
-                    {date.toLocaleDateString('pt-BR')}
+                    {getResult()}
                 </Value>
                 
                 {
                     showPicker && (
                         <DateTimePicker
                             testID="dateTimePicker"
-                            value={date}
-                            mode="date"
-                            is24Hour={true}
-                            display="default"
-                            onChange={onChange}
+                            value={value}
+                            mode={mode}
+                            display="spinner"
+                            onChange={handleChange}
                         />
                     )
                 }

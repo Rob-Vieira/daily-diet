@@ -1,11 +1,16 @@
 import { Button } from "@components/Button";
-import { Container, Content, Form } from "./styles";
+import { Container, Content, DateTime, Form, TwoInLine } from "./styles";
 import { useNavigation } from "@react-navigation/native";
 import { InternalHeader } from "@components/InternalHeader";
 import { Input } from "@components/Input";
 import { InputDateTime } from "@components/InputDateTime";
+import { useState } from "react";
+import { InputSwitch, InputSwitchReturnType } from "@components/InputSwitch";
 
 export function NewMeal(){
+    const [date, setDate] = useState<Date>(new Date);
+    const [inDiet, setInDiet] = useState<InputSwitchReturnType>('unset');
+
     const navigation = useNavigation();
     
     function handleGoBack(){
@@ -33,7 +38,25 @@ export function NewMeal(){
                         numberOfLines={5}
                     />
 
-                    <InputDateTime/>
+                    <TwoInLine>
+                        <DateTime
+                            mode="date"
+                            title="Data"
+                            value={date}
+                            onChange={(_event, date)=>{ setDate(date) }}
+                        />
+                        <DateTime
+                            mode="time"
+                            title="Hora"
+                            value={date}
+                            onChange={(_event, date)=>{ setDate(date) }}
+                        />
+                    </TwoInLine>
+
+                    <InputSwitch 
+                        value={inDiet}
+                    />
+
                 </Form>
 
                 <Button 

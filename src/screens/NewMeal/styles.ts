@@ -1,3 +1,4 @@
+import { InputDateTime } from "@components/InputDateTime";
 import { SafeAreaView } from "react-native-safe-area-context";
 import styled from "styled-components/native";
 
@@ -19,8 +20,19 @@ const Form = styled.View`
     gap: 24px;
 `;
 
+const TwoInLine = styled.View`
+    flex-direction: row;
+    gap: 24px;
+`;
+
+const DateTime = styled(InputDateTime)`
+    flex: 1;
+`;
+
 export {
     Container,
     Content,
-    Form
+    Form,
+    TwoInLine,
+    DateTime
 }
