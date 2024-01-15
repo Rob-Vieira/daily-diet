@@ -26,5 +26,5 @@ export function Icon({ name, size = 16, color = '#000000' }: IconProps){
 
     const IconComponent = getIcon(name);
     
-    return <IconComponent size={size} color={color} />
+    return (<IconComponent size={size} color={color} />)
 }

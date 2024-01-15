@@ -44,7 +44,7 @@ export function InputSwitch({ title, value, onChange }: Props){
     return (
         <Container>
             <Label 
-                title='Está dentro da dieta?'
+                title={title}
             />
             <Row>
                 <ButtonSuccess

@@ -4,7 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 import { InternalHeader } from "@components/InternalHeader";
 import { Input } from "@components/Input";
 import { InputDateTime } from "@components/InputDateTime";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { InputSwitch, InputSwitchReturnType } from "@components/InputSwitch";
 
 export function NewMeal(){
@@ -15,6 +15,10 @@ export function NewMeal(){
     
     function handleGoBack(){
         navigation.navigate("home");
+    }
+
+    function handleNewMeal(){
+        navigation.navigate("feedback", { inDiet: false });
     }
 
     return (
@@ -55,12 +59,15 @@ export function NewMeal(){
 
                     <InputSwitch 
                         value={inDiet}
+                        title="Está dentro da dieta?"
+                        onChange={setInDiet}
                     />
 
                 </Form>
 
                 <Button 
-                    title="Cadastrar refeição" 
+                    title="Cadastrar refeição"
+                    onPress={handleNewMeal}
                 />
             </Content>
         </Container>
